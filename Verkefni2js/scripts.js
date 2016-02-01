@@ -19,17 +19,17 @@ var pizzasmidur = function(obj, Nafn, Alegg, Verd, Stærð, divNafn){
 // Then append the whole thing onto the body
     document.getElementsByTagName('body')[0].appendChild(iDiv);
 
-    var pizzatexti = document.createElement('span')
+    var pizzatexti = document.createElement('span');
     document.getElementsByTagName('body')[0].appendChild(pizzatexti);
-    pizzatexti.innerHTML = nafn;
+    pizzatexti.innerHTML = nafn + " - ";
 
-    pizzatexti = document.createElement('span')
+    pizzatexti = document.createElement('span');
     document.getElementsByTagName('body')[0].appendChild(pizzatexti);
-    pizzatexti.innerHTML = alegg;
+    pizzatexti.innerHTML = alegg + " - ";
 
-    pizzatexti = document.createElement('span')
+    pizzatexti = document.createElement('span');
     document.getElementsByTagName('body')[0].appendChild(pizzatexti);
-    pizzatexti.innerHTML = verd + " kr";
+    pizzatexti.innerHTML = verd + " kr - ";
 
     pizzatexti = document.createElement('span');
     document.getElementsByTagName('body')[0].appendChild(pizzatexti);
