@@ -39,8 +39,8 @@ var pizzasmidur = function(obj, Nafn, Alegg, Verd, Stærð, divNafn){
 
 
 
-pizzasmidur('pizza1', 'Pepperoni Veisla', 'pepperoni', 2789, 'Stór', 'pepperoni');
-pizzasmidur('pizza1', "Eðvald's Classic", 'pepperoni, græn paprika, laukur, sveppir', 2979, 'Stór', 'classic');
+pizzasmidur('pizza1', 'Pepperoni Veisla', 'pepperoni', 2789, 'Stór', 'Pepperoni');
+pizzasmidur('pizza1', "Eðvald's Classic", 'pepperoni, græn paprika, laukur, sveppir', 2979, 'Stór', 'Classic');
 pizzasmidur('pizza1', "Smoky Bearnaise", 'hakk, cheddarostur, oregano, laukur, rauðlaukur, sveppir, chili-bearnaise', 3109, 'Stór', 'Smoky');
 pizzasmidur('pizza1', "BBQ King", 'pepperoni, piparostur, rjómaostur, jalapeno, BBQ sósa, Pulled Pork', 2169, 'Stór', 'BBQ');
 pizzasmidur('pizza1', "New York", 'hakk, beikonkurl, cheddarostur', 2849, 'Stór', 'NY');
