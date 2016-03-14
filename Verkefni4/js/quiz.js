@@ -24,8 +24,18 @@ var spurningar = [
     new Spurning('In computing what is Ram short for?', ['Really Awesome Memory', 'Random Access Memory', 'Rapid Attribute Memory', 'Rapid Access Memory'], 1)
 ];
 
+function Checker (spurnNumer){
 
-   var container = document.getElementById('main');
+}
 
-    container.innerHTML = container.innerHTML + spurningar[2].template();
+var teljari = 0;
+
+do{
+    var container = document.getElementById('main');
+
+    container.innerHTML = spurningar[teljari].template();
+
+    teljari++;
+}while(teljari < spurningar.length)
+
 
