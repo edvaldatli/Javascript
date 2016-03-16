@@ -1,5 +1,10 @@
 body h3{
     text-align: center;
-    background-color: dodgerblue;
     width: 100%;
+    font-family: Verdana, sans-serif;
+}
+.btn{
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 20px;
 }

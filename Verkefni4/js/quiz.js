@@ -3,6 +3,7 @@ var spurningarArray = [];
 var spurningNumber = 0;
 var rettSvarad = 0;
 
+
 function Spurning (spurning, svor, rettsvar){
     this.spurning = spurning,
     this.svor = svor,
@@ -13,7 +14,7 @@ function Spurning (spurning, svor, rettsvar){
         var spurning = '<div class="spurning">' + '<h3>' + this.spurning + '</h3>';
         var ehv = "";
         for(var i = 0; i < svor.length;i++){
-             ehv += "<button class='btn col s12 m6' id='" + i +"'>" + this.svor[i] + "</button>";
+             ehv += "<button class='btn btn-large col s12' id='" + i +"'>" + this.svor[i] + "</button>";
         }
 
         var last = '</div>';
@@ -39,7 +40,8 @@ var spurningar = [
     new Spurning('What is Elvis Presleys middle name?', ['Michael', 'Aaron', 'Keith', 'Johnny'], 1),
     new Spurning('How many oscars did the Titanic movie get?', [9, 4, 7, 11], 3),
     new Spurning('In which country were the first Olympic Games held?', ['United Kingdom', 'France', 'Greece', 'Czech Republic'], 2),
-    new Spurning('In computing what is Ram short for?', ['Really Awesome Memory', 'Random Access Memory', 'Rapid Attribute Memory', 'Rapid Access Memory'], 1)
+    new Spurning('In computing what is Ram short for?', ['Really Awesome Memory', 'Random Access Memory', 'Rapid Attribute Memory', 'Rapid Access Memory'], 1),
+    new Spurning('In the word E-mail, what does the "E" stand for?', ['Electronic', 'Express'], 0)
 ];
 
 function rettSvar(){
@@ -56,19 +58,33 @@ function checkAnswer(targetId){
     else{
         console.log("Rangt");
     }
-    console.log(rettSvar());
     spurningNumber++;
     loadQuestion();
 }
 
-function loadQuestion(){
+function loadQuestion() {
     var container = document.getElementById('main');
-    container.innerHTML = spurningar[spurningarArray[spurningNumber]].template();
 
-    $('.btn').on('click', function(event){
-        var targetId = event.target.id;
-        checkAnswer(targetId);
-    });
+    if (spurningar[spurningarArray[spurningNumber]] !== undefined) {
+        container.innerHTML = spurningar[spurningarArray[spurningNumber]].template();
+        progress();
+
+        $('.btn').on('click', function (event) {
+            var targetId = event.target.id;
+            checkAnswer(targetId);
+        });
+    }
+    else{
+        container.innerHTML = "Leik lokið";
+    }
+}
+
+function progress(){
+    var container = document.getElementById('progress');
+
+    container.innerHTML = '<div class="container progress"> <div class="determinate" style="width: ' + reiknir + '%"></div> </div>';
+
+    samtals = samtals + reiknir;
 }
 
 function loadGame(){
@@ -89,3 +105,6 @@ loadGame();
 $(document).ready(function(){
 
 });
+
+var reiknir = 100 / spurningar.length;
+var samtals = reiknir;
