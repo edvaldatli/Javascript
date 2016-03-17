@@ -3,9 +3,12 @@
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body id="body">
-    <div class="container row" id="main">
+    <div class="container" id="timer">
+    </div>
+    <div class="row" id="main">
 
     </div>
     <div id="progress">
