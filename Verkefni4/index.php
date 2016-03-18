@@ -8,13 +8,11 @@
 <body id="body">
     <div class="container" id="timer">
     </div>
-    <div class="row" id="main">
+    <div class="row" id="main"></div>
+    <div id="progress"></div>
 
-    </div>
-    <div id="progress">
-
-    </div>
     <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script type="text/javascript" src="js/jquery.knob.js"></script>
     <script type="text/javascript" src="js/quiz.js"></script>
 </body>
 </html>

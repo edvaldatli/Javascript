@@ -5,14 +5,15 @@ var rettSvarad = 0;
 var samtals = 0;
 var seconds;
 var temp;
-var buttonClick = false;
+var gameStarted = false;
 var counter;
+var timi = 15;
 
 
 function Spurning (spurning, svor, rettsvar){
-    this.spurning = spurning,
-    this.svor = svor,
-    this.rettsvar = rettsvar
+    this.spurning = spurning;
+    this.svor = svor;
+    this.rettsvar = rettsvar;
 
     this.template = function(){
 
@@ -48,7 +49,8 @@ var spurningar = [
     new Spurning('In computing what is Ram short for?', ['Really Awesome Memory', 'Random Access Memory', 'Rapid Attribute Memory', 'Rapid Access Memory'], 1),
     new Spurning('In the word E-mail, what does the "E" stand for?', ['Electronic', 'Express', 'Estimate', 'Earth-healty'], 0),
     new Spurning('What team did GeT_RiGhT play with before Ninjas in Pyjamas?', ['None', 'Fnatic', 'Team LDLC', 'SK Gaming'], 1),
-    new Spurning('Which team has won the most majors?', ['Ninjas in Pyjamas', 'FaZe', 'Astralis', 'Fnatic', 'EnVyUs', 'Na\'vi', 'Virtus.Pro'], 3)
+    new Spurning('Which team has won the most majors?', ['Ninjas in Pyjamas', 'FaZe', 'Fnatic', 'Na\'vi'], 2),
+    new Spurning('Er Aron legend?', ['Já', 'Nei', 'Kannski', 'Alveg sama'], 0)
 ];
 
 function rettSvar(){
@@ -61,8 +63,6 @@ function rettSvar(){
 
 function checkAnswer(targetId){
     var svarNotanda = targetId;
-    console.log('Svar Notanda: ' + svarNotanda);
-    console.log('Rétt svar ' + rettSvar());
     if(svarNotanda == rettSvar()){
         rettSvar();
         rettSvarad++;
@@ -78,23 +78,35 @@ function checkAnswer(targetId){
 
 function loadQuestion() {
     var container = document.getElementById('main');
-    if (spurningar.length > spurningNumber) {
-        $('#timer').html("15");
+    if (gameStarted == false){
+        $('#main').html('<button class="btn btn-large" id="startgame">Start game</button>');
+        $('#startgame').one('click', function(){
+            gameStarted = true;
+            loadGame();
+            timerStart();
+        });
+    }
+    else if(spurningar.length > spurningNumber){
+        $('#timer').html("LETS GO");
         container.innerHTML = spurningar[spurningarArray[spurningNumber]].template();
-        timer(15);
-        $('.btn').on('click', function (event) {
+        $('.btn').one('click', function (event) {
             var targetId = event.target.id;
             checkAnswer(targetId);
-            $('button[id^=""]').not('#' + targetId).prop('disabled', true);
+            timerStart();
         });
+        progress();
     }
     else{
         $('#timer').empty();
-        $('#main').html("<h3>Thanks for playing!</h3> <h5>Your points: " + rettSvarad + "</h5>");
-    }
-    progress();
-    console.log(spurningNumber);
+        $('#main').empty();
+        $('#main').html("<h3>Thanks for playing!</h3> <div class='container row'><h5>Your points: " + rettSvarad + " / " + spurningar.length + "</h5> <button id='playAgain' class='btn btn-large col s12'>Play Again</button></div>");
+        $('#playAgain').one('click', function(){
+           playAgain();
+        });
+        clearInterval(counter);
+        progress();
 
+    }
 }
 
 function progress(){
@@ -106,27 +118,31 @@ function progress(){
 }
 
 function loadGame(){
-    teljari = 0;
+    spurningarArray = [];
+    spurningNumber = 0;
+    rettSvarad = 0;
+    samtals = 0;
     for(var i = 0; i < spurningar.length; i++){
         spurningarArray.push(i);
     }
     shuffle(spurningarArray);
-    console.log(spurningarArray);
     loadQuestion();
 }
 
-function timer(seconds){
-    var time = seconds - 1;
+function timerStart(){
+    var time = timi;
     counter = setInterval(timer, 1000);
 
+
     function timer(){
+
         $('#timer').html(time);
         time += -1;
 
-        $
         if(time < 0){
             clearInterval(counter);
             checkAnswer();
+            timerStart();
             return
         }
     }
@@ -134,18 +150,12 @@ function timer(seconds){
 
 function playAgain(){
     loadGame();
+    timerStart();
+
 }
 
-
-
-
-
-
-
-
-
-loadGame();
 $(document).ready(function(){
 
 });
 
+loadGame();
