@@ -14,31 +14,25 @@ function Spurning (spurning, svor, rettsvar){
     this.spurning = spurning;
     this.svor = svor;
     this.rettsvar = rettsvar;
-
     this.template = function(){
-
         var spurning = '<h3>' + this.spurning + '</h3>' + '<div class="container spurning">';
         var takkar = "";
         for(var i = 0; i < svor.length;i++){
             takkar += "<button class='btn btn-large col s12' id='" + i +"'>" + this.svor[i] + "</button>";
         }
-
         var last = '</div>';
-
         return spurning + takkar + last;
     }
 }
 
 function shuffle(array) {
     var tmp, current, top = array.length;
-
     if(top) while(--top) {
         current = Math.floor(Math.random() * (top + 1));
         tmp = array[current];
         array[current] = array[top];
         array[top] = tmp;
     }
-
     return array;
 }
 
@@ -56,10 +50,6 @@ var spurningar = [
 function rettSvar(){
     return spurningar[spurningarArray[spurningNumber]].rettsvar;
 }
-
-
-
-
 
 function checkAnswer(targetId){
     var svarNotanda = targetId;
@@ -79,11 +69,21 @@ function checkAnswer(targetId){
 function loadQuestion() {
     var container = document.getElementById('main');
     if (gameStarted == false){
-        $('#main').html('<button class="btn btn-large" id="startgame">Start game</button>');
+        $('#timer').html('<h1>QUIZ</h1><button class="btn btn-large" id="startgame">Start game (SPACE)</button>');
         $('#startgame').one('click', function(){
             gameStarted = true;
             loadGame();
             timerStart();
+        });
+        $(document).one('keydown',function(e){
+           if(e.keyCode == 32){
+               gameStarted = true;
+               loadGame();
+               timerStart();
+           }
+           else{
+               console.log("lel");
+           }
         });
     }
     else if(spurningar.length > spurningNumber){
@@ -94,18 +94,46 @@ function loadQuestion() {
             checkAnswer(targetId);
             timerStart();
         });
+        $(document).one('keydown',function(e){
+            if(e.keyCode == 49){
+                checkAnswer(0);
+                timerStart();
+            }
+            else if(e.keyCode == 50){
+                checkAnswer(1);
+                timerStart();
+            }
+            else if(e.keyCode == 51){
+                checkAnswer(2);
+                timerStart();
+            }
+            else if(e.keyCode == 52){
+                checkAnswer(3);
+                timerStart();
+            }
+            else{
+                return
+            }
+        });
         progress();
     }
     else{
         $('#timer').empty();
         $('#main').empty();
-        $('#main').html("<h3>Thanks for playing!</h3> <div class='container row'><h5>Your points: " + rettSvarad + " / " + spurningar.length + "</h5> <button id='playAgain' class='btn btn-large col s12'>Play Again</button></div>");
+        $('#main').html("<h3>Thanks for playing!</h3> <div class='container row'><h5>Your points: " + rettSvarad + " / " + spurningar.length + "</h5> <button id='playAgain' class='btn btn-large col s12'>Play Again (SPACE)</button></div>");
         $('#playAgain').one('click', function(){
            playAgain();
         });
+        $(document).one('keydown', function(e){
+           if(e.keyCode == 32){
+               playAgain();
+           }
+           else{
+               return
+           }
+        });
         clearInterval(counter);
         progress();
-
     }
 }
 
@@ -114,7 +142,6 @@ function progress(){
     var reiknir = 100 / spurningar.length;
     container.innerHTML = '<div class="container progress"><span>' + samtals + ' %</span> <div class="determinate" style="width: ' + samtals + '%"></div></div> ';
     samtals += reiknir;
-
 }
 
 function loadGame(){
@@ -135,10 +162,8 @@ function timerStart(){
 
 
     function timer(){
-
         $('#timer').html(time);
         time += -1;
-
         if(time < 0){
             clearInterval(counter);
             checkAnswer();
@@ -151,11 +176,8 @@ function timerStart(){
 function playAgain(){
     loadGame();
     timerStart();
-
 }
 
-$(document).ready(function(){
 
-});
 
 loadGame();
