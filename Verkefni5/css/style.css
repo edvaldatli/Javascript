@@ -1,0 +1,10 @@
+img.activator{
+    height: 221px;
+}
+.titill{
+    white-space: nowrap;
+    display:block;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

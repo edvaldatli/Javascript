@@ -7,7 +7,7 @@ var seconds;
 var temp;
 var gameStarted = false;
 var counter;
-var timi = 15;
+var timi = 5;
 
 
 function Spurning (spurning, svor, rettsvar){
@@ -54,20 +54,18 @@ function rettSvar(){
 function checkAnswer(targetId){
     var svarNotanda = targetId;
     if(svarNotanda == rettSvar()){
-        rettSvar();
         rettSvarad++;
-        $('#'+ rettSvar()).addClass('right');
+        $('#'+ svarNotanda).addClass('right');
     }
     else{
-        $('#'+ svarNotanda).addClass('wrong');
+        $('#' + svarNotanda).addClass('wrong');
     }
-    clearInterval(counter);
     spurningNumber++;
+    clearInterval(counter);
     setTimeout(loadQuestion, 1000);
 }
 
 function loadQuestion() {
-    var container = document.getElementById('main');
     if (gameStarted == false){
         $('#timer').html('<h1>QUIZ</h1><button class="btn btn-large" id="startgame">Start game (SPACE)</button>');
         $('#startgame').one('click', function(){
@@ -80,42 +78,43 @@ function loadQuestion() {
                gameStarted = true;
                loadGame();
                timerStart();
-           }
-           else{
-               console.log("lel");
+               console.log("click");
            }
         });
+
     }
     else if(spurningar.length > spurningNumber){
-        $('#timer').html("LETS GO");
-        container.innerHTML = spurningar[spurningarArray[spurningNumber]].template();
+        $('#timer').html("-");
+        $('#main').html(spurningar[spurningarArray[spurningNumber]].template());
         $('.btn').one('click', function (event) {
             var targetId = event.target.id;
             checkAnswer(targetId);
             timerStart();
         });
-        $(document).one('keydown',function(e){
+        $(document).one('keypress', function(e){
             if(e.keyCode == 49){
                 checkAnswer(0);
                 timerStart();
+                console.log("click");
             }
             else if(e.keyCode == 50){
                 checkAnswer(1);
                 timerStart();
+                console.log("click");
             }
             else if(e.keyCode == 51){
                 checkAnswer(2);
                 timerStart();
+                console.log("click");
             }
             else if(e.keyCode == 52){
                 checkAnswer(3);
                 timerStart();
-            }
-            else{
-                return
+                console.log("click");
             }
         });
         progress();
+
     }
     else{
         $('#timer').empty();
@@ -124,23 +123,21 @@ function loadQuestion() {
         $('#playAgain').one('click', function(){
            playAgain();
         });
-        $(document).one('keydown', function(e){
+        $(document).one('keypress', function(e){
            if(e.keyCode == 32){
                playAgain();
-           }
-           else{
-               return
+               console.log("click");
            }
         });
         clearInterval(counter);
         progress();
     }
+    console.log(spurningNumber);
 }
 
 function progress(){
-    var container = document.getElementById('progress');
     var reiknir = 100 / spurningar.length;
-    container.innerHTML = '<div class="container progress"><span>' + samtals + ' %</span> <div class="determinate" style="width: ' + samtals + '%"></div></div> ';
+    $('#progress').html('<div class="container progress"><span>' + samtals + ' %</span> <div class="determinate" style="width: ' + samtals + '%"></div></div>');
     samtals += reiknir;
 }
 
@@ -153,6 +150,7 @@ function loadGame(){
         spurningarArray.push(i);
     }
     shuffle(spurningarArray);
+    console.log(spurningarArray);
     loadQuestion();
 }
 
@@ -160,15 +158,13 @@ function timerStart(){
     var time = timi;
     counter = setInterval(timer, 1000);
 
-
     function timer(){
         $('#timer').html(time);
         time += -1;
         if(time < 0){
             clearInterval(counter);
-            checkAnswer();
+            checkAnswer(undefined);
             timerStart();
-            return
         }
     }
 }
@@ -179,5 +175,7 @@ function playAgain(){
 }
 
 
+$(document).ready(function(){
+    loadQuestion();
+});
 
-loadGame();
