@@ -6,7 +6,7 @@ $.ajax({
     'dataType': 'json',
     'success': function(response) {
         for(var i = 0; i < response.results.length; i++) {
-            $('.vidburdir').append('<div class="card col s12 m6 l4">' +
+            $('.vidburdir').append('<div class="col s12 m6 l4"><div class="card">' +
                 '<div class="card-image waves-effect waves-block waves-light">' +
                 '<img class="activator" src="' + response.results[i].imageSource + '">' +
                 '</div>' +
@@ -19,7 +19,7 @@ $.ajax({
                 '<p>Here is some more information about this product that is only revealed once clicked on.</p>' +
                 '</div>' +
                 '</div>' +
-                '');
+                '</div>');
             $("img").error(function(){
                 $(this).attr("src", "http://www.fresno-limo.com/uploads/3/9/3/9/39396171/6334181_orig.jpg");
             });
