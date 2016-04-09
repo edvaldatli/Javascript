@@ -1,5 +1,5 @@
 $.ajax({
-    'url': 'http://apis.is/concerts',
+    'url': 'http://apis.is/conc3erts',
     'type': 'GET',
     'dataType': 'json',
     'success': function(response) {
@@ -24,6 +24,6 @@ $.ajax({
         }
     },
     'error': function(){
-        alert('Ekki tókst að sækja gögn, vinsamlegast reynið síðar.');
+        $('.vidburdir').html('<h2 class="center">Ekki tókst að sækja gögn, vinsamlegast reynið síðar.</h2>');
     }
 });
