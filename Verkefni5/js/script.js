@@ -1,5 +1,5 @@
 $.ajax({
-    'url': 'http://apis.is/conc3erts',
+    'url': 'http://apis.is/concerts',
     'type': 'GET',
     'dataType': 'json',
     'success': function(response) {
