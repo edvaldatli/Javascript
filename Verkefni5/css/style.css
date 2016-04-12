@@ -8,3 +8,14 @@ img.activator{
     overflow: hidden;
     text-overflow: ellipsis;
 }
+.takkar button{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.takkar button:active{
+    background-color: lightgray;
+    color: lightgray;
+}
+body{
+    overflow-y: scroll;
+}
