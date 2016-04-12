@@ -37,8 +37,7 @@ function main(){
     'success': function(response) {
         var data = response.results.sort(functionName);
         $('.vidburdir').html("");
-        $.each(response, function(){
-            $.each(this, function(){
+            $.each(data, function(){
                 $('.vidburdir').append('<div class="col s12 m6 l4"><div class="card">' +
                     '<div class="card-image waves-effect waves-block waves-light">' +
                     '<img class="activator" src="' + this.imageSource + '">' +
@@ -58,7 +57,6 @@ function main(){
                     $(this).attr("src", "http://www.fresno-limo.com/uploads/3/9/3/9/39396171/6334181_orig.jpg");
                 })
             });
-        });
     },
     'error': function(){
         $('.vidburdir').html('<h2 class="center">Ekki tókst að sækja gögn, vinsamlegast reynið síðar.</h2>');
