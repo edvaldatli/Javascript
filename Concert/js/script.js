@@ -1,4 +1,4 @@
-$('.vidburdir').html('<div class="progress"><div class="indeterminate"></div></div>');
+
 
 // VARIABLES //
 var data;
@@ -9,6 +9,7 @@ $(document).ready(function(){
     $('.takkar').html('<button class="btn btn-flat col s12 m5 orderByName" id="0">Raða eftir nafni tónlistarmanna</button>' +
         '<button class="btn btn-flat col s12 m5 offset-m2 orderByDate" id="1">Raða eftir dagsetningu</button>');
 
+    $('.vidburdir').html('<div class="progress"><div class="indeterminate"></div></div>');
 
     $.when($.ajax({
             'url': 'http://apis.is/concerts',
@@ -21,6 +22,7 @@ $(document).ready(function(){
         .then(function(){
             data = data.sort(sortByName);
             appendContentToBody(data);
+
         });
 
     $('#0').on('click', function(){
@@ -44,8 +46,9 @@ function sortByDate(a, b){
 
 function appendContentToBody(array){
     var counter = 0;
+
     $('.vidburdir').html('');
-    $.each(array, function(key, value){
+    $.each(array, function(){
         $('.vidburdir').append('<div class="col s12 m6 l3"><div class="card">' +
             '<div class="card-image waves-effect waves-block waves-light">' +
             '<img class="activator" src="' + this.imageSource + '">' +
@@ -59,12 +62,12 @@ function appendContentToBody(array){
             '<p>' + moment(this.dateOfShow).format('LLLL') + '</p>' +
             '</div>' +
             '</div>' +
-            '</div>');
+            '</div>').hide().fadeIn(200, 'swing');
         counter++;
     })
     $('img').error(function(){
        $(this).attr('src', 'http://www.fresno-limo.com/uploads/3/9/3/9/39396171/6334181_orig.jpg');
-    });
+    })
 }
 
 
