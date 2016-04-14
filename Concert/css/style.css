@@ -1,0 +1,41 @@
+body{
+    background-color: #268BD2;
+}
+img.activator{
+    height: 221px;
+}
+.titill{
+    white-space: nowrap;
+    display:block;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.takkar button{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: white;
+}
+.takkar button:active{
+    background-color: lightgray;
+    color: lightgray;
+}
+button:hover{
+    color: black;
+    background-color: white !important;
+}
+body{
+    overflow-y: scroll;
+}
+.card{
+    background-color: white;
+    -webkit-box-shadow: 0px 0px 5px rgba(0,0,0,.8);
+    -moz-box-shadow: 0px 0px 5px rgba(0,0,0,.8);
+    box-shadow: 0px 0px 5px rgba(0,0,0,.8);
+}
+.card-content{
+    border-top: 1px solid lightgray;
+}
+.container{
+    margin-top: 70px;
+}
