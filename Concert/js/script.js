@@ -4,7 +4,19 @@ var keyArray = [];
 // VARIABLES //
 
 $(document).ready(function(){
-    $('.takkar').html('<button class="btn btn-flat col s12 m5 orderByName" id="0">Raða eftir nafni tónlistarmanna</button>' +
+    $('.datepicker').pickadate({
+        monthsFull: [ 'janúar', 'febrúar', 'mars', 'apríl', 'maí', 'júní', 'júlí', 'ágúst', 'september', 'október', 'nóvember', 'desember' ],
+        monthsShort: [ 'jan', 'feb', 'mar', 'apr', 'maí', 'jún', 'júl', 'ágú', 'sep', 'okt', 'nóv', 'des' ],
+        weekdaysFull: [ 'sunnudagur', 'mánudagur', 'þriðjudagur', 'miðvikudagur', 'fimmtudagur', 'föstudagur', 'laugardagur' ],
+        weekdaysShort: [ 'sun', 'mán', 'þri', 'mið', 'fim', 'fös', 'lau' ],
+        today: 'Í dag',
+        clear: 'Hreinsa',
+        firstDay: 1,
+        format: 'dd. mmmm yyyy',
+        formatSubmit: 'yyyy/mm/dd'
+    });
+
+    $('.takkar').html('<button type="date" class="btn btn-flat col s12 m5 orderByName" id="0">Raða eftir nafni tónlistarmanna</button>' +
         '<button class="btn btn-flat col s12 m5 offset-m2 orderByDate" id="1">Raða eftir dagsetningu</button>');
 
     $('.vidburdir').html('<div class="progress"><div class="indeterminate"></div></div>');
